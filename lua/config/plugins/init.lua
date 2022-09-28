@@ -5,3 +5,4 @@
 ---
 
 require 'config.plugins.alpha'
+require 'config.plugins.telescope'

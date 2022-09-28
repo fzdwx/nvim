@@ -1,5 +1,5 @@
 ---
---- https://github.com/glepnir/dashboard-nvim config
+--- https://github.com/goolord/alpha-nvim config
 --- Created by like.
 --- DateTime: 9/28/22 8:47 PM
 ---
@@ -62,7 +62,7 @@ local options = {
         type = "group",
         val = {
             button("f", " " .. " Find File  ", ":Telescope find_files<CR>"),
-            button("p", " " .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
+            button("p", " " .. " Find project", ":lua require'telescope'.extensions.project.project{}<CR>"),
             button("r", " " .. " Recent File  ", ":Telescope oldfiles<CR>"),
             button("t", " " .. " Find Word  ", ":Telescope live_grep<CR>"),
             button("m", " " .. " Bookmarks  ", ":Telescope marks<CR>"),

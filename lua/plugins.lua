@@ -22,6 +22,13 @@ require('packer').startup(function(use)
 
     use "kyazdani42/nvim-web-devicons";
 
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'nvim-telescope/telescope-file-browser.nvim',
+        'nvim-telescope/telescope-project.nvim',
+        'nvim-lua/plenary.nvim',
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
