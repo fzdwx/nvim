@@ -24,9 +24,9 @@ require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        'nvim-telescope/telescope-file-browser.nvim',
-        'nvim-telescope/telescope-project.nvim',
+        "ahmedkhalf/project.nvim",
         'nvim-lua/plenary.nvim',
+        'nvim-lua/popup.nvim',
     }
 
     -- Automatically set up your configuration after cloning packer.nvim

@@ -42,7 +42,7 @@ map("n", "<leader>fr", ":lua require('telescope.builtin').lsp_references()<cr>")
 map("n", "<leader>fi", ":lua require('telescope.builtin').lsp_implementations()<cr>")
 map("n", "<leader>fl", ":lua require('telescope.builtin').treesitter()<cr>")
 map("n", "<leader>fk", ":lua require('telescope.builtin').keymaps()<cr>")
-map("n", "<leader>fp", ":lua require'telescope'.extensions.project.project{}<cr>")
+map("n", "<leader>fp", ":Telescope projects<cr>")
 
 map("n", "<leader>fc", ":lua require('telescope.builtin').commands()<cr>")
 map("n", "<leader>fch", ":lua require('telescope.builtin').command_history()<cr>")

@@ -62,7 +62,7 @@ local options = {
         type = "group",
         val = {
             button("f", " " .. " Find File  ", ":Telescope find_files<CR>"),
-            button("p", " " .. " Find project", ":lua require'telescope'.extensions.project.project{}<CR>"),
+            button("p", " " .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
             button("r", " " .. " Recent File  ", ":Telescope oldfiles<CR>"),
             button("t", " " .. " Find Word  ", ":Telescope live_grep<CR>"),
             button("m", " " .. " Bookmarks  ", ":Telescope marks<CR>"),

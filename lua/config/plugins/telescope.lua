@@ -22,7 +22,7 @@ local options = {
             "--smart-case",
         },
         prompt_prefix = "   ",
-        selection_caret = "  ",
+        selection_caret = " ",
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
@@ -42,9 +42,9 @@ local options = {
             preview_cutoff = 120,
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = { ".git/", "node_modules" },
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-        path_display = { "truncate" },
+        path_display = { "smart" },
         winblend = 0,
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -61,9 +61,36 @@ local options = {
     },
 
     extensions_list = { "themes", "terms" },
+
+    extensions = {
+        media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            filetypes = {"png", "webp", "jpg", "jpeg"},
+            find_cmd = "rg" -- find command (defaults to `fd`)
+        }
+    },
 }
 
 telescope.setup(options)
 
-telescope.load_extension('project')
-telescope.load_extension('file_browser')
+
+---
+--- project nvim
+---
+local status_ok, project = pcall(require, "project_nvim")
+if not status_ok then
+    return
+end
+project.setup({
+
+    -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
+    detection_methods = { "pattern" },
+
+    -- patterns used to detect root dir, when **"pattern"** is in detection_methods
+    patterns = { ".git", "Makefile", "package.json" },
+})
+
+telescope.load_extension('projects')
+
+
