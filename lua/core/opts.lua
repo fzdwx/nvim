@@ -27,13 +27,11 @@ set smartindent
 -- Spell check:
 vim.cmd([[
 set spelllang=en_us
+setlocal noswapfile
+set bufhidden=hide
 ]])
 
 -- turn off macro reording
-vim.cmd([[
-map q <Nop>
-]])
-
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
 opt.smartcase = true

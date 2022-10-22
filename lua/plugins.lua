@@ -29,9 +29,65 @@ require('packer').startup(function(use)
         'nvim-lua/popup.nvim',
     }
 
+    use {
+      'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        },
+
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+    -- using packer.nvim
+    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+
+    -- synox
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+
+    -- themes
+    use 'helbing/aura.nvim'
+
+    -- lualine
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
+    -- lsp about
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+
+    -- cmp
+    use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
+    use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
+    use 'hrsh7th/cmp-path'     -- { name = 'path' }
+    use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
+    use 'hrsh7th/nvim-cmp'
+
+    use 'saadparwaiz1/cmp_luasnip'
+    use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+
+    -- help dev neovim 
+    use "folke/neodev.nvim"
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
+
+-- 每次保存 plugins.lua 自动安装插件
+pcall(
+  vim.cmd,
+  [[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    augroup end
+  ]]
+)

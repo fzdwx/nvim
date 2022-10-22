@@ -12,4 +12,3 @@ require "plugins"
 
 --- loader core
 require "core"
-

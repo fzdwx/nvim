@@ -19,7 +19,7 @@ end
 
 vim.cmd("noremap ; :")
 vim.cmd("map <C-q> :qa!<CR>")
-vim.cmd("map q :q<CR>")
+--vim.cmd("map Q :q<CR>")
 
 -- Save and exit
 map("n", "<C-s>", ":w<CR>")
@@ -63,3 +63,13 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 ]])
+
+
+-- nvim tree key map
+map("n","<F1>",":NvimTreeFindFileToggle<cr>")
+
+-- 移动 到行首行尾
+map("n","<C-a>","<HOME>")
+map("n","<C-e>","<END>")
+map("n","A","I")
+map("n","E","A")
