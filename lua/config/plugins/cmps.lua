@@ -118,64 +118,69 @@ cmp.setup({
             require('luasnip').lsp_expand(args.body)
         end,
     },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+     ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { "i" }),
+     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { "i" }),
+     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+     ["<C-y>"] = cmp.mapping {
+       i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
+       c = function(fallback)
+         if cmp.visible() then
+           cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+         else
+           fallback()
+         end
+       end,
+     },
+     ["<CR>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        local confirm_opts = vim.deepcopy(confirm_opts_g) -- avoid mutating the original opts below
+        local is_insert_mode = function()
+          return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+        end
+        if is_insert_mode() then -- prevent overwriting brackets
+          confirm_opts.behavior = cmp.ConfirmBehavior.Insert
+        end
+        if cmp.confirm(confirm_opts) then
+          return -- success, exit early
+        end
+      end
 
-     mapping = cmp.mapping.preset.insert({
-      ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { "i" }),
-      ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { "i" }),
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-y>"] = cmp.mapping {
-        i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
-          else
-            fallback()
-          end
-        end,
-      },
-      ["<CR>"] = cmp.mapping(function(fallback)
-       if cmp.visible() then
-         local confirm_opts = vim.deepcopy(confirm_opts_g) -- avoid mutating the original opts below
-         local is_insert_mode = function()
-           return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
-         end
-         if is_insert_mode() then -- prevent overwriting brackets
-           confirm_opts.behavior = cmp.ConfirmBehavior.Insert
-         end
-         if cmp.confirm(confirm_opts) then
-           return -- success, exit early
-         end
-       end
-
-       if jumpable(1) and luasnip.jump(1) then
-         return -- success, exit early
-       end
-         fallback() -- if not exited early, always fallback
-      end),
-      ["<Tab>"] = cmp.mapping(function(fallback)
-       if cmp.visible() then
-         cmp.select_next_item()
-       elseif luasnip.expand_or_locally_jumpable() then
-         luasnip.expand_or_jump()
-       elseif jumpable(1) then
-         luasnip.jump(1)
-       elseif has_words_before() then
-         -- cmp.complete()
-         fallback()
-       else
-         fallback()
-       end
-     end, { "i", "s" }),
-    }),
+      if jumpable(1) and luasnip.jump(1) then
+        return -- success, exit early
+      end
+        fallback() -- if not exited early, always fallback
+     end),
+     ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      elseif jumpable(1) then
+        luasnip.jump(1)
+      elseif has_words_before() then
+        -- cmp.complete()
+        fallback()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+   }),
 
      sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'luasnip' }, -- For luasnip users.
-    }, {
       { name = 'buffer' },
+      { name = "emoji" },
+      { name = "path" },
+      { name = "treesitter" },
     })
 })
 

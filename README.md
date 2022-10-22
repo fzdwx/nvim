@@ -8,3 +8,5 @@ git clone https://github.com/fzdwx/nvim ~/.config/nvim  && nvim
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim && rm -rf ~/.cache/nvim
 ```
+
+

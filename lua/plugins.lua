@@ -70,7 +70,17 @@ require('packer').startup(function(use)
     use 'hrsh7th/nvim-cmp'
 
     use 'saadparwaiz1/cmp_luasnip'
-    use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+    use 'rafamadriz/friendly-snippets'
+    use({
+        "L3MON4D3/LuaSnip",
+        config = function()
+      require("luasnip.loaders.from_lua").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load {
+        paths = paths,
+      }
+      require("luasnip.loaders.from_snipmate").lazy_load()
+  end,
+    })
 
     -- help dev neovim 
     use "folke/neodev.nvim"
