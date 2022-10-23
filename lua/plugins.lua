@@ -48,7 +48,7 @@ require('packer').startup(function(use)
     }
 
     -- themes
-    use 'helbing/aura.nvim'
+    use '/home/like/IdeaProjects/aura.nvim'
 
     -- lualine
     use {
