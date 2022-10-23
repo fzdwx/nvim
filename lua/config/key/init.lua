@@ -54,6 +54,7 @@ map("n", "<leader>fgb", ":lua require('telescope.builtin').git_branches()<cr>")
 
 -- toogle term
 map("n", "<F12>", ":ToggleTerm<cr>")
+map("n", "<C-\\>", ":ToggleTerm direction=float<cr>")
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
@@ -66,6 +67,9 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
+-- bufferline 左右Tab切换
+map("n", "<C-[>", ":BufferLineCyclePrev<CR>")
+map("n", "<C-]>", ":BufferLineCycleNext<CR>")
 
 vim.cmd([[
 " " Copy to clipboard

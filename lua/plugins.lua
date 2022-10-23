@@ -29,6 +29,32 @@ require('packer').startup(function(use)
         'nvim-lua/popup.nvim',
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
+        "kevinhwang91/nvim-bqf",
+        event = { "BufRead", "BufNew" },
+        config = function()
+        require("bqf").setup({
+            auto_enable = true,
+            preview = {
+                win_height = 12,
+                win_vheight = 12,
+                delay_syntax = 80,
+                border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+            },
+            func_map = {
+                vsplit = "",
+                ptogglemode = "z,",
+                stoggleup = "",
+            },
+            filter = {
+                fzf = {
+                    action_for = { ["ctrl-s"] = "split" },
+                    extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+                },
+            },
+        })
+      end,
+    }
 
     use {
       'kyazdani42/nvim-tree.lua',
@@ -85,7 +111,32 @@ require('packer').startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
 
+   -- term
    use {"akinsho/toggleterm.nvim", tag = '*'} 
+
+   -- 注释
+   use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+   }
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {
+            }
+        end
+    }
+
+    use {
+        "f-person/git-blame.nvim",
+        event = "BufRead",
+        config = function()
+            vim.cmd "highlight default link gitblame SpecialComment"
+            vim.g.gitblame_enabled = 0
+        end,
+    }
 
     -- help dev neovim 
     use "folke/neodev.nvim"
