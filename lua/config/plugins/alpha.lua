@@ -66,7 +66,7 @@ local options = {
             button("r", " " .. " Recent File  ", ":Telescope oldfiles<CR>"),
             button("t", " " .. " Find Word  ", ":Telescope live_grep<CR>"),
             button("m", " " .. " Bookmarks  ", ":Telescope marks<CR>"),
-            button("h", " " .. " Themes  ", ":Telescope themes<CR>"),
+            --button("h", " " .. " Themes  ", ":Telescope themes<CR>"),
             button("c", " " .. " Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
             button("q", " " .. " Quit", ":qa<CR>"),
         },

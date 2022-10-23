@@ -28,6 +28,7 @@ require('packer').startup(function(use)
         'nvim-lua/plenary.nvim',
         'nvim-lua/popup.nvim',
     }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     use {
       'kyazdani42/nvim-tree.lua',
@@ -68,19 +69,23 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'     -- { name = 'path' }
     use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
     use 'hrsh7th/nvim-cmp'
-
     use 'saadparwaiz1/cmp_luasnip'
     use 'rafamadriz/friendly-snippets'
     use({
         "L3MON4D3/LuaSnip",
         config = function()
       require("luasnip.loaders.from_lua").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load {
-        paths = paths,
-      }
+      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_snipmate").lazy_load()
   end,
     })
+
+    use {
+	    "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
+   use {"akinsho/toggleterm.nvim", tag = '*'} 
 
     -- help dev neovim 
     use "folke/neodev.nvim"
