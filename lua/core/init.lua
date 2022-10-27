@@ -7,4 +7,3 @@
 require 'core.opts'
 
 require 'config.key'
-require 'config.plugins'

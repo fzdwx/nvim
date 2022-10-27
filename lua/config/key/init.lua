@@ -17,6 +17,23 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local nnoremap = function(lhs, rhs, silent)
+  vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true, silent = silent })
+end
+
+local inoremap = function(lhs, rhs, silent)
+  vim.api.nvim_set_keymap("i", lhs, rhs, { noremap = true, silent = silent })
+end
+
+local snoremap = function(lhs, rhs, silent)
+  vim.api.nvim_set_keymap("s", lhs, rhs, { noremap = true, silent = silent })
+end
+
+local vnoremap = function(lhs, rhs)
+  vim.api.nvim_set_keymap("v", lhs, rhs, { noremap = true })
+end
+
+
 vim.cmd("noremap ; :")
 vim.cmd("map <C-q> :qa!<CR>")
 --vim.cmd("map Q :q<CR>")
@@ -55,15 +72,7 @@ map("n", "<leader>fgb", ":lua require('telescope.builtin').git_branches()<cr>")
 -- toogle term
 map("n", "<F12>", ":ToggleTerm<cr>")
 map("n", "<C-\\>", ":ToggleTerm direction=float<cr>")
-function _G.set_terminal_keymaps()
-  local opts = {buffer = 0}
-  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-end
+
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
@@ -93,3 +102,55 @@ map("n","<C-a>","<HOME>")
 map("n","<C-e>","<END>")
 map("n","A","I")
 map("n","E","A")
+
+
+-- Crates Nvim
+vim.cmd([[
+nnoremap <silent> <leader>ct :lua require('crates').toggle()<cr>
+nnoremap <silent> <leader>cr :lua require('crates').reload()<cr>
+nnoremap <silent> <leader>cv :lua require('crates').show_versions_popup()<cr>
+nnoremap <silent> <leader>cf :lua require('crates').show_features_popup()<cr>
+nnoremap <silent> <leader>cd :lua require('crates').show_dependencies_popup()<cr>
+nnoremap <silent> <leader>cu :lua require('crates').update_crate()<cr>
+vnoremap <silent> <leader>cu :lua require('crates').update_crates()<cr>
+nnoremap <silent> <leader>ca :lua require('crates').update_all_crates()<cr>
+nnoremap <silent> <leader>cU :lua require('crates').upgrade_crate()<cr>
+vnoremap <silent> <leader>cU :lua require('crates').upgrade_crates()<cr>
+nnoremap <silent> <leader>cA :lua require('crates').upgrade_all_crates()<cr>
+nnoremap <silent> <leader>cH :lua require('crates').open_homepage()<cr>
+nnoremap <silent> <leader>cR :lua require('crates').open_repository()<cr>
+nnoremap <silent> <leader>cD :lua require('crates').open_documentation()<cr>
+nnoremap <silent> <leader>cC :lua require('crates').open_crates_io()<cr>
+]])
+
+
+-- Use alt + hjkl to resize windows
+nnoremap("<M-j>", ":resize -2<CR>")
+nnoremap("<M-k>", ":resize +2<CR>")
+nnoremap("<M-h>", ":vertical resize -2<CR>")
+nnoremap("<M-l>", ":vertical resize +2<CR>")
+
+-- Escape redraws the screen and removes any search highlighting.
+nnoremap("<esc>", ":noh<return><esc>")
+
+-- Easy CAPS
+inoremap("<c-u>", "<ESC>viwUi")
+
+-- TAB in normal mode will move to text buffer
+--nnoremap("<TAB>", ":bnext<CR>")
+-- SHIFT-TAB will go back
+--nnoremap("<S-TAB>", ":bprevious<CR>")
+
+
+-- Lsp
+-- ctrl + b go do definition
+nnoremap("<C-b>", "<cmd>lua vim.lsp.buf.definition()<CR>", true)
+--nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", true)
+--nnoremap("gr", "<cmd>LspTrouble lsp_references<CR>", true)
+--nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", true)
+nnoremap("<leader>q", "<cmd>lua require'rust-tools'.hover_actions.hover_actions()<CR>", true)
+--nnoremap("<leader>a", "<cmd>lua require'rust-tools'.code_action_group.code_action_group()<CR>", true)
+--vnoremap("<leader>a", "<cmd>RustHoverRange<CR>")
+--
+
+nnoremap("q",":q<cr>",true)

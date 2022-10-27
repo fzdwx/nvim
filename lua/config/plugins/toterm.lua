@@ -1,23 +1,26 @@
+local M = {}
 
-local tok, term = pcall(require,"toggleterm")
+function M.setup(term)
+    term.setup()
 
-if not tok then
-    return
+    add()
 end
 
+local Terminal = require('toggleterm.terminal').Terminal
 
-term.setup({
-})
-
-
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-  cmd = "lazygit",
-  direction = "float",
-})
+local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", })
+local ra = Terminal:new({ cmd = "ra", direction = "float" })
 
 function _lazygit_toggle()
-  lazygit:toggle()
+    lazygit:toggle()
+end
+function _ra_toggle()
+    ra:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+function add()
+    vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("n", "<leader>ra", "<cmd>lua _ra_toggle()<CR>", { noremap = true, silent = true })
+end
+
+return M
