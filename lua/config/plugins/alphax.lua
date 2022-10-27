@@ -3,12 +3,6 @@
 --- Created by like.
 --- DateTime: 9/28/22 8:47 PM
 ---
-local present, alpha = pcall(require, "alpha")
-
-if not present then
-    return
-end
-
 local function button(sc, txt, keybind)
     local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
@@ -79,28 +73,34 @@ local options = {
     headerPaddingBottom = { type = "padding", val = 2 },
 }
 
-alpha.setup {
-    layout = {
-        options.headerPaddingTop,
-        options.header,
-        options.headerPaddingBottom,
-        options.buttons,
-    },
-    opts = {},
-}
+local M = {}
 
--- Disable statusline in dashboard
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "alpha",
-    callback = function()
-        -- store current statusline value and use that
-        local old_laststatus = vim.opt.laststatus
-        vim.api.nvim_create_autocmd("BufUnload", {
-            buffer = 0,
-            callback = function()
-                vim.opt.laststatus = old_laststatus
-            end,
-        })
-        vim.opt.laststatus = 0
-    end,
-})
+function M.setup(alpha)
+    alpha.setup {
+        layout = {
+            options.headerPaddingTop,
+            options.header,
+            options.headerPaddingBottom,
+            options.buttons,
+        },
+        opts = {},
+    }
+
+    -- Disable statusline in dashboard
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "alpha",
+        callback = function()
+            -- store current statusline value and use that
+            local old_laststatus = vim.opt.laststatus
+            vim.api.nvim_create_autocmd("BufUnload", {
+                buffer = 0,
+                callback = function()
+                    vim.opt.laststatus = old_laststatus
+                end,
+            })
+            vim.opt.laststatus = 0
+        end,
+    })
+end
+
+return M
