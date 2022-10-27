@@ -21,11 +21,6 @@ local has_words_before = function()
 end
 
 local function jumpable(dir)
-    local luasnip_ok, luasnip = pcall(require, "luasnip")
-    if not luasnip_ok then
-        return false
-    end
-
     local win_get_cursor = vim.api.nvim_win_get_cursor
     local get_current_buf = vim.api.nvim_get_current_buf
 
@@ -120,7 +115,7 @@ cmp.setup({
     snippet = {
 
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
         end,
     },
     window = {

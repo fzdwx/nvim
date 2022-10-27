@@ -20,52 +20,53 @@ require('packer').startup(function(use)
 
     use "goolord/alpha-nvim";
 
-    use "kyazdani42/nvim-web-devicons";
-
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         "ahmedkhalf/project.nvim",
         'nvim-lua/plenary.nvim',
         'nvim-lua/popup.nvim',
     }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
         "kevinhwang91/nvim-bqf",
         event = { "BufRead", "BufNew" },
         config = function()
-        require("bqf").setup({
-            auto_enable = true,
-            preview = {
-                win_height = 12,
-                win_vheight = 12,
-                delay_syntax = 80,
-                border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-            },
-            func_map = {
-                vsplit = "",
-                ptogglemode = "z,",
-                stoggleup = "",
-            },
-            filter = {
-                fzf = {
-                    action_for = { ["ctrl-s"] = "split" },
-                    extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+            require("bqf").setup({
+                auto_enable = true,
+                preview = {
+                    win_height = 12,
+                    win_vheight = 12,
+                    delay_syntax = 80,
+                    border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
                 },
-            },
-        })
-      end,
+                func_map = {
+                    vsplit = "",
+                    ptogglemode = "z,",
+                    stoggleup = "",
+                },
+                filter = {
+                    fzf = {
+                        action_for = { ["ctrl-s"] = "split" },
+                        extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+                    },
+                },
+            })
+        end,
     }
 
     use {
-      'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
-
+        'kyazdani42/nvim-tree.lua',
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
+
+    use {
+        'kyazdani42/nvim-web-devicons',
+        config = function()
+            require("nvim-web-devicons").setup{ default = true }
+        end
+    }
     -- using packer.nvim
-    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+    use { 'akinsho/bufferline.nvim', tag = "v2.*"}
 
     -- synox
     use {
@@ -73,13 +74,19 @@ require('packer').startup(function(use)
         run = ':TSUpdate'
     }
 
-    -- themes
-    use '/home/like/IdeaProjects/aura.nvim'
+    ---- themes
+    use {
+        '/home/like/IdeaProjects/aura.nvim',
+    --    config = function()
+    --        require("aura").setup()
+    --    end
+    }
+
+    --use 'sainnhe/everforest'
 
     -- lualine
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
     -- lsp about
@@ -87,6 +94,15 @@ require('packer').startup(function(use)
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
+    }
+
+    -- rust
+    use 'simrat39/rust-tools.nvim'
+    use {
+        'saecki/crates.nvim',
+        config = function()
+            require('crates').setup()
+        end,
     }
 
     -- cmp
@@ -101,32 +117,27 @@ require('packer').startup(function(use)
     use({
         "L3MON4D3/LuaSnip",
         config = function()
-      require("luasnip.loaders.from_lua").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_snipmate").lazy_load()
-  end,
+            require("luasnip.loaders.from_lua").lazy_load()
+            require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_snipmate").lazy_load()
+        end,
     })
 
     use {
-	    "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
     }
 
-   -- term
-   use {"akinsho/toggleterm.nvim", tag = '*'} 
+    -- term
+    use { "akinsho/toggleterm.nvim", tag = '*' }
 
-   -- 注释
-   use {
+    -- 注释
+    use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
-        end
-   }
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {
-            }
         end
     }
 
@@ -139,7 +150,7 @@ require('packer').startup(function(use)
         end,
     }
 
-    -- help dev neovim 
+    -- help dev neovim
     use "folke/neodev.nvim"
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
@@ -150,11 +161,11 @@ end)
 
 -- 每次保存 plugins.lua 自动安装插件
 pcall(
-  vim.cmd,
-  [[
-    augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
-  ]]
+        vim.cmd,
+        [[
+          augroup packer_user_config
+          autocmd!
+          autocmd BufWritePost plugins.lua source <afile> | PackerSync
+          augroup end
+        ]]
 )
