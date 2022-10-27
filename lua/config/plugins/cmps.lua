@@ -1,5 +1,8 @@
 local function jumpable(dir)
-    luasnip = require('luasnip')
+    local status_luasnip_ok, luasnip = pcall(require, "luasnip")
+    if not status_luasnip_ok then
+        return
+    end
 
     local win_get_cursor = vim.api.nvim_win_get_cursor
     local get_current_buf = vim.api.nvim_get_current_buf
@@ -90,15 +93,29 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
-local confirm_opts_g = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-}
+function init_lspkind(lspkind)
+    lspkind.init({
+        mode = 'symbol'
+    })
+end
 
 local M = {}
 
-function M.setup(cmp)
+function M.setup()
+    cmp = require("cmp")
     luasnip = require('luasnip')
+    lspkind = require('lspkind')
+
+    require("luasnip.loaders.from_lua").lazy_load()
+    require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_snipmate").lazy_load()
+
+    confirm_opts_g = {
+        --behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
+    }
+
+    init_lspkind(lspkind)
 
     cmp.setup({
         snippet = {
@@ -172,7 +189,12 @@ function M.setup(cmp)
             { name = "path" },
             { name = "treesitter" },
             { name = "crates" },
-        })
+        }),
+
+        formatting = {
+            format = lspkind.cmp_format({
+            })
+        }
     })
 
     -- Set configuration for specific filetype.

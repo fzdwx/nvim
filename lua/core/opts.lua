@@ -100,11 +100,6 @@ vim.cmd([[
 -- 光标回到上次位置
 vim.cmd([[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]])
 
--- 持久化撤销
-vim.cmd([[
-    set undofile
-    set undodir=~/.config/nvim/cache/undodir
-]])
 -- vim保存1000条文件记录
 vim.cmd([[ set viminfo=!,'10000,<50,s10,h ]])
 

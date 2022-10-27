@@ -149,18 +149,12 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
     use 'saadparwaiz1/cmp_luasnip'
     use 'rafamadriz/friendly-snippets'
-    use({
-        "L3MON4D3/LuaSnip",
-        config = function()
-            require("luasnip.loaders.from_lua").lazy_load()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_snipmate").lazy_load()
-        end,
-    })
+    use 'onsails/lspkind-nvim'
+    use("L3MON4D3/LuaSnip")
     use {
         'hrsh7th/nvim-cmp',
         config = function()
-            require("config.plugins.cmps").setup(require("cmp"))
+            require("config.plugins.cmps").setup()
         end
     }
 
@@ -173,7 +167,7 @@ require('packer').startup(function(use)
 
     -- term
     use { "akinsho/toggleterm.nvim",
-          tag = '*' ,
+          tag = '*',
           config = function()
               require("config.plugins.toterm").setup(require("toggleterm"))
           end
