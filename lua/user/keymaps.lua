@@ -29,8 +29,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<C-[>", ":bnext<CR>", opts)
+keymap("n", "<C-]>", ":bprevious<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
@@ -54,12 +54,6 @@ keymap("v", ">", ">gv", opts)
 
 -- NvimTree
 keymap("n", "<F1>", ":NvimTreeToggle<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -109,6 +103,42 @@ local vnoremap = function(lhs, rhs)
     vim.api.nvim_set_keymap("v", lhs, rhs, { noremap = true })
 end
 
+-- 退出
 vim.cmd("map <C-q> :qa!<CR>")
 nnoremap("q",":q<cr>",true)
+-- 保存
+map("n", "<C-s>", ":w<CR>")
+-- 不用打shift
 nnoremap(";",":",true)
+
+-- toogle term
+map("n", "<C-\\>", ":ToggleTerm direction=float<cr>")
+
+-- 移动行首/尾
+map("n","<C-a>","<HOME>")
+map("n","<C-e>","<END>")
+map("n","A","I")
+map("n","E","A")
+
+
+-- Telescope
+map("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>")
+map("n", "<leader>/", ":lua require'telescope.builtin'.current_buffer_fuzzy_find{}<cr>")
+map("n", "<leader>fm", ":Telescope media_files<cr>")
+map("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>")
+map("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>")
+map("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>")
+map("n", "<leader>fd", ":lua require('telescope.builtin').diagnostics()<cr>")
+map("n", "<leader>fs", ":lua require('telescope.builtin').lsp_workspace_symbols()<cr>")
+map("n", "<leader>fr", ":lua require('telescope.builtin').lsp_references()<cr>")
+map("n", "<leader>fi", ":lua require('telescope.builtin').lsp_implementations()<cr>")
+map("n", "<leader>fl", ":lua require('telescope.builtin').treesitter()<cr>")
+map("n", "<leader>fk", ":lua require('telescope.builtin').keymaps()<cr>")
+map("n", "<leader>fp", ":Telescope projects<cr>")
+
+map("n", "<leader>fc", ":lua require('telescope.builtin').commands()<cr>")
+map("n", "<leader>fch", ":lua require('telescope.builtin').command_history()<cr>")
+map("n", "<leader>fsh", ":lua require('telescope.builtin').search_history()<cr>")
+map("n", "<leader>fmp", ":lua require('telescope.builtin').man_pages()<cr>")
+map("n", "<leader>fgc", ":lua require('telescope.builtin').git_commits()<cr>")
+map("n", "<leader>fgb", ":lua require('telescope.builtin').git_branches()<cr>")

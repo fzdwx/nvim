@@ -20,3 +20,6 @@ require "user.plugin.indentline"
 require "user.plugin.alpha"
 require "user.lsp"
 require "user.plugin.dap"
+
+
+vim.cmd('colorscheme aura')
