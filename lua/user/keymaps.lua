@@ -53,7 +53,7 @@ keymap("v", ">", ">gv", opts)
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<F1>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
@@ -78,3 +78,37 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+
+
+-- Functional wrapper for mapping custom keybindings
+-- mode (as in Vim modes like Normal/Insert mode)
+-- lhs (the custom keybinds you need)
+-- rhs (the commands or existing keybinds to customise)
+-- opts (additional options like <silent>/<noremap>, see :h map-arguments for more info on it)
+function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+local nnoremap = function(lhs, rhs, silent)
+    vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true, silent = silent })
+end
+
+local inoremap = function(lhs, rhs, silent)
+    vim.api.nvim_set_keymap("i", lhs, rhs, { noremap = true, silent = silent })
+end
+
+local snoremap = function(lhs, rhs, silent)
+    vim.api.nvim_set_keymap("s", lhs, rhs, { noremap = true, silent = silent })
+end
+
+local vnoremap = function(lhs, rhs)
+    vim.api.nvim_set_keymap("v", lhs, rhs, { noremap = true })
+end
+
+vim.cmd("map <C-q> :qa!<CR>")
+nnoremap("q",":q<cr>",true)
+nnoremap(";",":",true)
