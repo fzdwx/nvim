@@ -94,6 +94,7 @@ return packer.startup(function(use)
     use { "williamboman/mason-lspconfig.nvim" }
     use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
     use { "RRethy/vim-illuminate" }
+    use { 'mhartington/formatter.nvim' }
 
     -- Telescope
     use { "nvim-telescope/telescope.nvim" }

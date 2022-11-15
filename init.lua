@@ -20,6 +20,7 @@ require "user.plugin.indentline"
 require "user.plugin.alpha"
 require "user.lsp"
 require "user.plugin.dap"
+require "user.plugin.formatter"
 
 
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
