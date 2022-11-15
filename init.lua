@@ -22,4 +22,5 @@ require "user.lsp"
 require "user.plugin.dap"
 
 
+vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 vim.cmd('colorscheme aura')

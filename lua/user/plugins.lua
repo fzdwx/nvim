@@ -59,6 +59,17 @@ return packer.startup(function(use)
     use { "lewis6991/impatient.nvim" }
     use { "lukas-reineke/indent-blankline.nvim" }
     use { "goolord/alpha-nvim" }
+    use {
+      "utilyre/barbecue.nvim",
+      requires = {
+        "neovim/nvim-lspconfig",
+        "smiteshp/nvim-navic",
+        "kyazdani42/nvim-web-devicons", -- optional
+      },
+    config = function()
+      require("barbecue").setup()
+    end,
+}
 
     -- Colorschemes
     use { "folke/tokyonight.nvim" }
