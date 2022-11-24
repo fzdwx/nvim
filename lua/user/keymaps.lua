@@ -29,8 +29,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<C-[>", ":bnext<CR>", opts)
-keymap("n", "<C-]>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
@@ -80,45 +80,45 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 -- rhs (the commands or existing keybinds to customise)
 -- opts (additional options like <silent>/<noremap>, see :h map-arguments for more info on it)
 function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 local nnoremap = function(lhs, rhs, silent)
-    vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true, silent = silent })
+  vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true, silent = silent })
 end
 
 local inoremap = function(lhs, rhs, silent)
-    vim.api.nvim_set_keymap("i", lhs, rhs, { noremap = true, silent = silent })
+  vim.api.nvim_set_keymap("i", lhs, rhs, { noremap = true, silent = silent })
 end
 
 local snoremap = function(lhs, rhs, silent)
-    vim.api.nvim_set_keymap("s", lhs, rhs, { noremap = true, silent = silent })
+  vim.api.nvim_set_keymap("s", lhs, rhs, { noremap = true, silent = silent })
 end
 
 local vnoremap = function(lhs, rhs)
-    vim.api.nvim_set_keymap("v", lhs, rhs, { noremap = true })
+  vim.api.nvim_set_keymap("v", lhs, rhs, { noremap = true })
 end
 
 -- 退出
 vim.cmd("map <C-q> :qa!<CR>")
-nnoremap("q",":q<cr>",true)
+nnoremap("q", ":q<cr>", true)
 -- 保存
 map("n", "<C-s>", ":w<CR>")
 -- 不用打shift
-nnoremap(";",":",true)
+nnoremap(";", ":", true)
 
 -- toogle term
 map("n", "<C-\\>", ":ToggleTerm direction=float<cr>")
 
 -- 移动行首/尾
-map("n","<C-a>","<HOME>")
-map("n","<C-e>","<END>")
-map("n","A","I")
-map("n","E","A")
+map("n", "<C-a>", "<HOME>")
+map("n", "<C-e>", "<END>")
+map("n", "A", "I")
+map("n", "E", "A")
 
 
 -- Telescope
@@ -142,3 +142,24 @@ map("n", "<leader>fsh", ":lua require('telescope.builtin').search_history()<cr>"
 map("n", "<leader>fmp", ":lua require('telescope.builtin').man_pages()<cr>")
 map("n", "<leader>fgc", ":lua require('telescope.builtin').git_commits()<cr>")
 map("n", "<leader>fgb", ":lua require('telescope.builtin').git_branches()<cr>")
+
+
+-- trouble
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
+  { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+  { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
+  { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+  { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+  { silent = true, noremap = true }
+)
+vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+  { silent = true, noremap = true }
+)

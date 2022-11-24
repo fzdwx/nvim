@@ -6,6 +6,7 @@ end
 local actions = require "telescope.actions"
 local previewers = require "telescope.previewers"
 local sorters = require "telescope.sorters"
+local trouble = require("trouble.providers.telescope")
 
 telescope.setup {
   defaults = {
@@ -31,20 +32,22 @@ telescope.setup {
     qflist_previewer = previewers.vim_buffer_qflist.new,
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     extensions = {
-        fzf = {
-          fuzzy = true, -- false will only do exact matching
-          override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-        },
+      fzf = {
+        fuzzy = true, -- false will only do exact matching
+        override_generic_sorter = true, -- override the generic sorter
+        override_file_sorter = true, -- override the file sorter
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      },
     },
     mappings = {
-      i = {
-        ["<Down>"] = actions.cycle_history_next,
-        ["<Up>"] = actions.cycle_history_prev,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-      },
+      -- i = {
+      --   ["<Down>"] = actions.cycle_history_next,
+      --   ["<Up>"] = actions.cycle_history_prev,
+      --   ["<C-j>"] = actions.move_selection_next,
+      --   ["<C-k>"] = actions.move_selection_previous,
+      -- },
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
     },
   },
 }
