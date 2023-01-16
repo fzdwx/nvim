@@ -15,7 +15,7 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         opts = {
             filesystem = {
-                follow_current_file = false,
+                follow_current_file = true,
             },
         },
     },
@@ -68,7 +68,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
-            { "nvim-telescope/telescope-dap.nvim" },
+            { "nvim-    telescope/telescope-dap.nvim" },
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
             { "ahmedkhalf/project.nvim" },
             { "debugloop/telescope-undo.nvim" },
