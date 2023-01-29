@@ -13,6 +13,9 @@ return {
           theme = "vitesse",
         },
       })
+
+      vim.cmd("highlight Normal guibg=None ctermbg=None")
+      vim.cmd("highlight NonText guibg=None ctermbg=None")
     end,
   },
 
