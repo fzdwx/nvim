@@ -1,9 +1,14 @@
 local color = {
+  write = "#ffffff",
   comment = "#629755",
-  string = "#61f1ca",
+  string = "#11E4cd",
   functionName = "#ffca85",
-  border = "#1d202f",
+  field = "#7287FD", -- "#73daca"
+  type = "#82e2ff",
+  border = "#61f1ca",
   border_highlight = "#29a4bd",
+  --cyna = "#79c2ed",
+  lavender = "#ea76cb",
 }
 
 return {
@@ -34,6 +39,24 @@ return {
         }
         hl.Comment = {
           fg = color.comment,
+        }
+        hl.PreProc = {
+          fg = color.lavender,
+        }
+        hl["@field"] = {
+          fg = color.field,
+        }
+        hl["@property"] = hl["@field"]
+
+        --- neotree color style
+        hl.NeoTreeNormal = {
+          fg = color.write,
+        }
+        hl.NeoTreeFloatBorder = {
+          fg = color.string,
+        }
+        hl.NeoTreeRootName = {
+          fg = color.string,
         }
       end,
     },
