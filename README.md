@@ -33,6 +33,9 @@ nvim
 
 ```
 cat         渲染颜色
+[n]gcc      注释
+<C-a>/<C-x> incr/decr
+gx          打开链接
 ```
 
 ### 2.Lsp

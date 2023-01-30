@@ -2,6 +2,10 @@ local st_i = {
   italic = true,
 }
 
+local st_b = {
+  bold = true,
+}
+
 local color = {
   main = "#61f1ca",
   primary = "#4d9375",
@@ -36,7 +40,7 @@ local theme = {
   keyword = color.main,
   keywordFunc = color.purb,
   comment = color.greena,
-  string = color.orga,
+  string = color.br_greena,
   border = color.main,
   normal = color.whitea,
 }
@@ -63,7 +67,7 @@ return {
         }
       end,
       on_highlights = function(hl, c)
-        hl.String = { fg = theme.string }
+        hl.String = { fg = theme.string, style = st_b }
         hl.Keyword = { fg = theme.keyword }
         hl.Function = { fg = theme.functionName }
         hl.Comment = { fg = theme.comment, style = st_i }
@@ -115,7 +119,16 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     config = function()
-      require("colorizer").setup({})
+      require("colorizer").setup({ "css", "scss", "lua", "html", "javascript" }, {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        rgb_fn = true, -- CSS rgb() and rgba() functions
+        hsl_fn = true, -- CSS hsl() and hsla() functions
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        names = false,
+      })
     end,
     keys = {
       {

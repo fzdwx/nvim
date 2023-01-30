@@ -25,3 +25,10 @@ end
 map("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>", { desc = "Find project" })
 map("n", "<leader>fu", "<cmd>Telescope undo<CR>", { desc = "Find project" })
 map("n", "<leader>fk", "<cmd>lua require'telescope.builtin'.keymaps{}<CR>")
+
+vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
+vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
+vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
+vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
+vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
+vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
