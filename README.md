@@ -29,7 +29,13 @@ nvim
 
 ## Keymap 
 
-### 1.Lsp
+### 1.Normal
+
+```
+cat         渲染颜色
+```
+
+### 2.Lsp
 
 ```shell
 <leader>ca   code-action
@@ -49,3 +55,8 @@ gh           Find the symbol's definition   # Use <C-t> go back
 <C-p>        Hover doc
 
 ```
+
+
+### Link
+
+1. [Extra Plugins](https://www.lunarvim.org/docs/plugins/extra-plugins) 
