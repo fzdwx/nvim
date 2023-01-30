@@ -13,7 +13,9 @@ vim.opt.updatetime = 200
 
 function spec.config()
   require("barbecue").setup({
-    create_autocmd = false, -- prevent barbecue from updating itself automatically
+    options = {
+      theme = "tokyonight",
+    },
   })
 end
 

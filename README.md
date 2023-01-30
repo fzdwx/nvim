@@ -1,32 +1,14 @@
-# LazyVim
+# Nvim Config
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim)
 
 ## 🚀 Getting Started
-
-This repo contains an example setup for
-[LazyVim](https://github.com/LazyVim/LazyVim)
-
-### 1. Make a backup of your current Neovim files:
 
 ```sh
 mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
-```
-
-### 2. Clone the starter
-
-```sh
 git clone https://github.com/fzdwx/nvim ~/.config/nvim
-```
-
-### 3. Start Neovim!
-
-```sh
 nvim
 ```
-
-Refer to the comments in the files on how to customize **LazyVim**.
 
 ## 📂 File Structure
 
@@ -39,7 +21,31 @@ Refer to the comments in the files on how to customize **LazyVim**.
 │   │   ├── lazy.lua
 │   │   └── options.lua
 │   └── plugins
-│       └── example.lua
+│       └── spec.lua
 ├── init.lua
 └── stylua.toml
 </pre>
+
+
+## Keymap 
+
+### 1.Lsp
+
+```shell
+<leader>ca   code-action
+<leader>ci   call hierarchy
+<leader>co 
+<leader>cr   rename
+<leader>cf   format document(in `v` mode, format range)
+<leader>sl   Show line diagnostics
+<leader>sc   Show cursor diagnostics
+<leader>sb   Show buf diagnostics
+<leader>o    Show outline
+[e           Diagnostic jump prev           # Use <C-o> go back
+]e           Diagnostic jump next
+gd           goto definition                # Use <C-t> go back
+gpd          peek definition
+gh           Find the symbol's definition   # Use <C-t> go back
+<C-p>        Hover doc
+
+```
