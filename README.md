@@ -35,9 +35,10 @@ nvim
 [n]gcc            注释
 <C-a>/<C-x>       incr/decr 
 <leader>a         打开 cursor word 对应的链接
+<leader>gg        lazygit
 <A-j>/<A-k>       Move line
 gw                Seach cursor word
-<leader>gg        lazygit
+f/F/t/T           quick jum
 ```
 
 ### 2.Lsp
