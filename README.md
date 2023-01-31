@@ -32,7 +32,6 @@ nvim
 ### 1.Normal
 
 ```
-cat         渲染颜色
 [n]gcc      注释
 <C-a>/<C-x> incr/decr
 gx          打开链接
@@ -56,6 +55,8 @@ gd           goto definition                # Use <C-t> go back
 gpd          peek definition
 gh           Find the symbol's definition   # Use <C-t> go back
 <C-p>        Hover doc
+
+<leader>xx   diagnostics  info
 
 ```
 

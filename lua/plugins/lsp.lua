@@ -1,4 +1,10 @@
 return {
+
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
+
   -- LSP keymaps
   {
     "neovim/nvim-lspconfig",

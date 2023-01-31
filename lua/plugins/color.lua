@@ -72,12 +72,12 @@ return {
         hl.Function = { fg = theme.functionName }
         hl.Comment = { fg = theme.comment, style = st_i }
         hl.PreProc = { fg = color.bluea }
+        hl.Statement = { fg = "#ff00ff" }
 
-        hl.Cursor = { bg = "", fg = "#24283b" }
         hl.CursorLine = { bg = "" }
-        hl.CursorLineNr = { fg = color.activeForeground }
-        hl.CursorColumn = { bg = "" }
-        hl.lCursor = { bg = "", fg = "#24283b" }
+
+        --- 行号颜色
+        hl.LineNr = { fg = color.activeForeground }
 
         hl.GitGutterAdd = { fg = color.main }
         hl.GitGutterChange = { fg = color.pura }
@@ -118,26 +118,34 @@ return {
 
   {
     "NvChad/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({ "css", "scss", "lua", "html", "javascript" }, {
+    event = "BufReadPost",
+    opts = {
+      filetypes = {
+        "*",
+        typescriptreact = { mode = "background" },
+        html = { mode = "background" },
+      },
+      user_default_options = {
         RGB = true, -- #RGB hex codes
         RRGGBB = true, -- #RRGGBB hex codes
         RRGGBBAA = true, -- #RRGGBBAA hex codes
+        AARRGGBB = false, -- 0xAARRGGBB hex codes
         rgb_fn = true, -- CSS rgb() and rgba() functions
         hsl_fn = true, -- CSS hsl() and hsla() functions
-        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
         names = false,
-      })
-    end,
-    keys = {
-      {
-        "cat",
-        function()
-          require("colorizer").attach_to_buffer(0, { mode = "background", css = true })
-        end,
-        desc = "Attach colorizer to buffer",
+        -- Available modes for `mode`: foreground, background,  virtualtext
+        mode = "background", -- Set the display mode.
+        -- Available methods are false / true / "normal" / "lsp" / "both"
+        -- True is same as normal
+        tailwind = true, -- Enable tailwind colors
+        -- parsers can contain values used in |user_default_options|
+        sass = { enable = false, parsers = { css } }, -- Enable sass colors
+        virtualtext = "■",
       },
+      -- all the sub-options of filetypes apply to buftypes
+      buftypes = {},
     },
   },
 }
