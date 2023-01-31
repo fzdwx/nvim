@@ -32,9 +32,12 @@ nvim
 ### 1.Normal
 
 ```
-[n]gcc      注释
-<C-a>/<C-x> incr/decr
-gx          打开链接
+[n]gcc            注释
+<C-a>/<C-x>       incr/decr 
+<C-LeftMouse>     打开链接
+<A-j>/<A-k>       Move line
+gw                Seach cursor word
+<leader>gg        lazygit
 ```
 
 ### 2.Lsp

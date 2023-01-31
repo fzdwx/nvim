@@ -48,9 +48,4 @@ return {
       vim.api.nvim_command("augroup END")
     end,
   },
-
-  {
-    "felipec/vim-sanegx",
-    event = "BufRead",
-  },
 }

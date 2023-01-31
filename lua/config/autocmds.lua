@@ -3,6 +3,7 @@
 -- Add any additional autocmds here
 --
 local cmd = vim.cmd
+local create_cmd = vim.api.nvim_create_user_command
 
 cmd("set noswapfile")
 
@@ -12,3 +13,7 @@ cmd([[
     au FileType * try | silent! loadview | catch | endtry
     au BufLeave,BufWinLeave * silent! mkview
 ]])
+
+create_cmd("Upper", function(opts)
+  print(string.upper(opts.args))
+end, { nargs = 1 })

@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local Util = require("lazyvim.util")
+local util = require("util")
 
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
@@ -13,9 +13,9 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
---map("n", "gw", "*N")
---map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
---map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("n", "<C-LeftMouse>", function()
+  util.openCWord()
+end, { desc = "Open Url" })
 
 --
 -- telescope 扩展

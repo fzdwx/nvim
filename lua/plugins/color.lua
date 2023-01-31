@@ -31,6 +31,7 @@ local color = {
   blueb = "#82e2ff",
 
   orga = "#FFC66D",
+  grey = "#928374",
 }
 
 local theme = {
@@ -71,6 +72,7 @@ return {
         hl.Keyword = { fg = theme.keyword }
         hl.Function = { fg = theme.functionName }
         hl.Comment = { fg = theme.comment, style = st_i }
+        hl.SpecialComment = { fg = color.grey }
         hl.PreProc = { fg = color.bluea }
         hl.Statement = { fg = "#ff00ff" }
 
