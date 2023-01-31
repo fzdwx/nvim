@@ -13,7 +13,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("n", "<C-LeftMouse>", function()
+--map("n", "<C-LeftMouse>", function()
+map("n", "<leader>a", function()
   util.openCWord()
 end, { desc = "Open Url" })
 

@@ -34,7 +34,7 @@ nvim
 ```
 [n]gcc            注释
 <C-a>/<C-x>       incr/decr 
-<C-LeftMouse>     打开链接
+<leader>a         打开 cursor word 对应的链接
 <A-j>/<A-k>       Move line
 gw                Seach cursor word
 <leader>gg        lazygit

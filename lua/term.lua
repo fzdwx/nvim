@@ -3,6 +3,11 @@ local window = require("lspsaga.window")
 local build_float = require("lazy.view.float")
 local term = {}
 
+---@class FloatOptions:LazyFloatOption
+---@field interactive boolean
+
+---@param cmd  string
+---@param opts FloatOptions
 function term:open(cmd, opts)
   local float = build_float(opts)
   vim.fn.termopen(cmd, vim.tbl_isempty(opts) and vim.empty_dict() or opts)
