@@ -15,19 +15,18 @@ return {
         view = {
           mappings = {
             list = {
-              { key = "P", action = "cd" },
+              { key = ".", action = "cd" },
               { key = "<BS>", action = "dir_up" },
               { key = "<Esc>", action = "close" },
               { key = "<Tab>", action = "expand" },
-              { key = "<Right>", action = "expand" },
-              { key = "<Left>", action = "close_node" },
+              { key = "<Right>", action = "cd" },
+              { key = "<Left>", action = "dir_up" },
               { key = ")", action = "next_git_item" },
               { key = "(", action = "prev_git_item" },
               { key = ">", action = "next_diag_item" },
               { key = "<", action = "prev_diag_item" },
               { key = "?", action = "toggle_help" },
               { key = "a", action = "create" },
-              { key = "C", action = "" },
             },
           },
           float = {
