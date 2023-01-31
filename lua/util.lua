@@ -5,9 +5,7 @@ local util = require("lazy.util")
 -- https://github.com/folke/lazy.nvim/blob/main/lua/lazy/core/util.lua
 -- /home/like/a.out
 local corUtil = require("lazy.core.util")
-local term = require("term")
 local expand = vim.fn.expand
-local api = vim.api
 
 local M = {}
 
@@ -19,12 +17,15 @@ M.openCWord = function()
   util.open(expand("<cWORD>"))
 end
 
-M.term_cmd_dir = function(cmd, dir, opts)
-  term:open(table.concat({ cmd, " ", dir }), opts)
-end
-
-M.ranger_path = function(path, opts)
-  M.term_cmd_dir("ranger", path, opts)
+-- float func: 存在对应名称的窗口则toggle，否则新建
+---@param cmd string 要运行的命令
+---@param name string 窗口的名称
+M.float = function(name, cmd)
+  if vim.fn["floaterm#terminal#get_bufnr"](name) ~= -1 then
+    vim.cmd(string.format('exec "FloatermToggle %s"', name))
+  else
+    vim.cmd(string.format("FloatermNew --name=%s %s", name, cmd))
+  end
 end
 
 return M

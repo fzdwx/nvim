@@ -13,6 +13,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+map("n", ";", ":", { desc = "Use ; replace :" })
+
 --map("n", "<C-LeftMouse>", function()
 map("n", "<leader>a", function()
   util.openCWord()
