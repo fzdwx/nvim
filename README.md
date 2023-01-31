@@ -62,6 +62,15 @@ gh           Find the symbol's definition   # Use <C-t> go back
 
 <leader>xx   diagnostics  info
 
+### 3. Floaterm
+
+```shell
+# 这里自定义命令全局搜索 `runFile`
+<F5>         运行文件对应的命令,例如 go: `go run `
+# 这里自定义在`float_term.lua#keys`
+<a-t>        show term   
+<a-r>        run ranger
+```
 ```
 
 
