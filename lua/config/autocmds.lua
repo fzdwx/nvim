@@ -16,10 +16,14 @@ cmd([[
 ]])
 
 create_cmd("Upper", function(opts)
-  print(string.upper(opts.args))
+    print(string.upper(opts.args))
 end, { nargs = 1 })
 
 --- term :Float ranger
 create_cmd("Float", function(opts)
-  util.float("Float_Term", opts.args)
+    util.float("Float_Term", opts.args)
 end, { nargs = 1 })
+
+create_cmd("Reloadcfg", function()
+    cmd([[:source $MYVIMRC]])
+end, {})

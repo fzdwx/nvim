@@ -52,9 +52,9 @@ return {
 
                 hl.CursorLine = { bg = "" }
 
-                hl.TabLineFill = { bg = "" }
-                hl.BufferTitleSeL = { fg = color.whitea, bg = "" }
-                hl.BufferTitleNoSel = { fg = color.grey, bg = "" }
+                hl.BufLineFill = { bg = "" }
+                hl.BufLineTitleSel = { fg = color.whitea, bg = "" }
+                hl.BufLineTitleNoSel = { fg = color.grey, bg = "" }
 
                 --- 行号颜色
                 hl.LineNr = { fg = color.activeForeground }

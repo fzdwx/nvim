@@ -6,9 +6,12 @@ return {
         "akinsho/bufferline.nvim",
         enabled = false,
     },
+
+    -- https://github.com/fzdwx/bufline.nvim
     {
         "fzdwx/bufline.nvim",
-        event = "VeryLazy",
+        -- dir = "~/IdeaProjects/bufline.nvim",
+        event = "BufReadPre",
         config = function()
             local buf = require("bufline")
             buf.setup({
