@@ -27,7 +27,7 @@ nvim
 </pre>
 
 
-## Keymap 
+## ⌨ Keymap 
 
 ### 1.Normal
 
@@ -114,6 +114,7 @@ gh                Find the symbol's definition   # Use <C-t> go back
 <C-p>             Hover doc
 
 <leader>xx   diagnostics  info
+```
 
 ### 3. Floaterm
 
@@ -124,7 +125,6 @@ gh                Find the symbol's definition   # Use <C-t> go back
 <a-t>        float term   
 <a-r>        ranger
 <a-l>        lazygit
-```
 ```
 
 
