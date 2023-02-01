@@ -79,6 +79,13 @@ map("v", "<s-down>", "j", { noremap = true })
 map("n", "<s-left>", "<left>vh", { noremap = true })
 map("n", "<s-right>", "vl", { noremap = true })
 
+map("n", "z<Left>", "<C-O>", { noremap = true })
+map("n", "z<Right>", "<C-I>", { noremap = true })
+
+map({ "n", "x" }, "<leader>sr", function()
+  require("ssr").open()
+end, { desc = "Replace in files" })
+
 vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
 vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
 vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })

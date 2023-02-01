@@ -62,4 +62,37 @@ return {
       leap.add_default_mappings(false)
     end,
   },
+
+  {
+    "windwp/nvim-spectre",
+    enabled = false,
+    keys = {
+      {
+        "<leader>sr",
+        function()
+          require("spectre").open()
+        end,
+        desc = "Replace in files (Spectre)",
+      },
+    },
+
+    "cshuaimin/ssr.nvim",
+    module = "ssr",
+    -- Calling setup is optional.
+    config = function()
+      require("ssr").setup({
+        min_width = 50,
+        min_height = 5,
+        max_width = 120,
+        max_height = 25,
+        keymaps = {
+          close = "q",
+          next_match = "n",
+          prev_match = "N",
+          replace_confirm = "<cr>",
+          replace_all = "<leader><cr>",
+        },
+      })
+    end,
+  },
 }
