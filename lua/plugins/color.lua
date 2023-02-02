@@ -24,7 +24,9 @@ return {
 
     {
         "LazyVim/LazyVim",
-        opts = {},
+        opts = {
+            colorscheme = "tokyonight",
+        },
     },
 
     -- https://github.com/folke/tokyonight.nvim/blob/main/lua/lualine/themes/tokyonight.lua
@@ -104,6 +106,15 @@ return {
                 hl.LspSagaSignatureHelpBorder = color.border
             end,
         },
+    },
+
+    -- theme
+    {
+        "2nthony/vitesse.nvim",
+        dependencies = {
+            "tjdevries/colorbuddy.nvim",
+        },
+        opts = { reverse_visual = true },
     },
 
     {

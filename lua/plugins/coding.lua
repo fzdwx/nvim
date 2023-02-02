@@ -1,4 +1,14 @@
 return {
+
+    {
+        "onsails/lspkind.nvim",
+        config = function()
+            require("lspkind").init({
+                symbol_map = require("icons").kind,
+            })
+        end,
+    },
+
     -- extend auto completion
     {
         "hrsh7th/nvim-cmp",
