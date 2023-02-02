@@ -21,11 +21,16 @@ local theme = {
 }
 
 return {
+
+    {
+        "LazyVim/LazyVim",
+        opts = {},
+    },
+
     -- https://github.com/folke/tokyonight.nvim/blob/main/lua/lualine/themes/tokyonight.lua
     -- https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_storm.lua
     {
         "folke/tokyonight.nvim",
-        lazy = true,
         opts = {
             style = "storm",
             transparent = true,
@@ -45,8 +50,7 @@ return {
                 hl.String = { fg = theme.string, style = st_b }
                 hl.Keyword = { fg = theme.keyword }
                 hl.Function = { fg = theme.functionName }
-                hl.Comment = { fg = theme.comment, style = st_i }
-                hl.SpecialComment = { fg = color.grey }
+                hl.Comment = { fg = color.foreground, style = st_i }
                 hl.PreProc = { fg = color.bluea }
                 hl.Statement = { fg = "#ff00ff" }
 
@@ -72,19 +76,30 @@ return {
                 hl["@keyword.function"] = { fg = theme.keywordFunc }
                 hl["@keyword"] = { fg = theme.keyword, style = st_i }
                 hl["@operator"] = { fg = color.purc }
+                hl["@comment"] = { fg = color.greena, style = st_i }
                 hl.Operator = { fg = color.purc }
                 hl["@field"] = { fg = theme.field }
                 hl["@property"] = { fg = theme.field }
                 hl["@parameter"] = { fg = "" }
 
-                --- notify
-                hl.NotifyINFOBorder = { fg = theme.border }
-                hl.NotifyERRORBorder = { fg = color.bg_reda }
+                hl.NvimTreeCursorLine = color.select
 
-                --- neotree color style
-                hl.NeoTreeNormal = { fg = theme.normal }
-                hl.NeoTreeFloatBorder = { fg = theme.border }
-                hl.NeoTreeRootName = { fg = color.main }
+                hl.TelescopeBorder = color.border
+                hl.TelescopeSelection = color.select
+                hl.TelescopeMatching = { fg = color.main, underline = true }
+
+                hl.LspFloatWinBorder = color.border
+
+                --- notify
+                hl.NotifyINFOBorder = color.border
+                hl.NotifyERRORBorder = color.border
+
+                hl.LspFloatWinBorder = color.border
+                hl.LspSagaHoverBorder = color.border
+                hl.LspSagaRenameBorder = color.border
+                hl.LspSagaDefPreviewBorder = color.border
+                hl.LspSagaCodeActionBorder = color.border
+                hl.LspSagaSignatureHelpBorder = color.border
             end,
         },
     },
@@ -98,7 +113,7 @@ return {
 
     {
         "NvChad/nvim-colorizer.lua",
-        event = "BufReadPost",
+        event = "BufRead",
         opts = {
             filetypes = {
                 "*",
