@@ -5,19 +5,19 @@
 local util = require("util")
 
 local function map(mode, lhs, rhs, opts)
-    local keys = require("lazy.core.handler").handlers.keys
-    ---@cast keys LazyKeysHandler
-    -- do not create the keymap if a lazy keys handler exists
-    if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
+  local keys = require("lazy.core.handler").handlers.keys
+  ---@cast keys LazyKeysHandler
+  -- do not create the keymap if a lazy keys handler exists
+  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
 end
 
 map("n", ";", ":", { desc = "Use ; replace :" })
 
 --map("n", "<C-LeftMouse>", function()
 map("n", "<leader>a", function()
-    util.openCWord()
+  util.openCWord()
 end, { desc = "Open Url" })
 
 --
@@ -85,7 +85,7 @@ map("n", "z<Right>", "<C-I>", { noremap = true })
 map("v", "/", "gcc")
 
 map({ "n", "x" }, "<leader>sr", function()
-    require("ssr").open()
+  require("ssr").open()
 end, { desc = "Replace in files" })
 
 vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })

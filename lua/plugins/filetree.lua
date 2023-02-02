@@ -9,7 +9,7 @@ return {
         sort_by = "case_sensitive",
         actions = {
           open_file = {
-            window_picker = { enable = false },
+            -- window_picker = { enable = false },
           },
         },
         view = {

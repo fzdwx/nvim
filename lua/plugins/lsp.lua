@@ -1,3 +1,5 @@
+local enable = true
+
 return {
 
   {
@@ -35,7 +37,7 @@ return {
         { "<C-p>", "<cmd>Lspsaga hover_doc ++keep<cr>", desc = "Show hover doc" },
         { "<leader>o", "<cmd>Lspsaga outline<CR>", desc = "Show outline" },
 
-        { "gh", "<cmd>Lspsaga lsp_finder<CR>", desc = "Find the symbol's definition. <C-t> go back" },
+        { "gf", "<cmd>Lspsaga lsp_finder<CR>", desc = "Find the symbol's definition. <C-t> go back" },
         { "gd", "<cmd>Lspsaga goto_definition<cr>", desc = "Goto Definition." },
         { "gpd", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek definition." },
       }

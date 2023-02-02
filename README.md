@@ -1,6 +1,5 @@
 # Nvim Config
 
-
 ## 🚀 Getting Started
 
 ```sh
@@ -26,8 +25,7 @@ nvim
 └── stylua.toml
 </pre>
 
-
-## ⌨ Keymap 
+## ⌨ Keymap
 
 ### 1.Normal
 
@@ -99,7 +97,7 @@ a"                  双引号内（包含双引号本身）
 ```shell
 <leader>ca        code-action
 <leader>ci        call hierarchy
-<leader>co 
+<leader>co
 <leader>cr        rename
 <leader>cf        format document(in `v` mode, format range)
 <leader>sl        Show line diagnostics
@@ -110,7 +108,7 @@ a"                  双引号内（包含双引号本身）
 ]e                Diagnostic jump next
 gd                goto definition                # Use <C-t> go back
 gpd               peek definition
-gh                Find the symbol's definition   # Use <C-t> go back
+gf                Find the symbol's definition   # Use <C-t> go back
 <C-p>             Hover doc
 
 <leader>xx   diagnostics  info
@@ -122,12 +120,11 @@ gh                Find the symbol's definition   # Use <C-t> go back
 # 这里自定义命令全局搜索 `runFile`
 <F5>         运行文件对应的命令,例如 go: `go run `
 # 这里自定义在`float_term.lua#keys`
-<a-t>        float term   
+<a-t>        float term
 <a-r>        ranger
 <a-l>        lazygit
 ```
 
-
 ### Link
 
-1. [Extra Plugins](https://www.lunarvim.org/docs/plugins/extra-plugins) 
+1. [Extra Plugins](https://www.lunarvim.org/docs/plugins/extra-plugins)
