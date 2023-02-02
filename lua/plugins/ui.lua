@@ -1,33 +1,39 @@
-return {
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPost",
-        config = function()
-            require("indent_blankline").setup({
-                filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-                show_trailing_blankline_indent = true,
-                show_current_context = true,
-            })
-        end,
-    },
+local logo = [[
+    ⣿⣿⣿⣿⣯⣿⣿⠄⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠈⣿⣿⣿⣿⣿⣿⣆⠄
+    ⢻⣿⣿⣿⣾⣿⢿⣢⣞⣿⣿⣿⣿⣷⣶⣿⣯⣟⣿⢿⡇⢃⢻⣿⣿⣿⣿⣿⢿⡄
+    ⠄⢿⣿⣯⣏⣿⣿⣿⡟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣧⣾⢿⣮⣿⣿⣿⣿⣾⣷
+    ⠄⣈⣽⢾⣿⣿⣿⣟⣄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣝⣯⢿⣿⣿⣿⣿
+    ⣿⠟⣫⢸⣿⢿⣿⣾⣿⢿⣿⣿⢻⣿⣿⣿⢿⣿⣿⣿⢸⣿⣼⣿⣿⣿⣿⣿⣿⣿
+    ⡟⢸⣟⢸⣿⠸⣷⣝⢻⠘⣿⣿⢸⢿⣿⣿⠄⣿⣿⣿⡆⢿⣿⣼⣿⣿⣿⣿⢹⣿
+    ⡇⣿⡿⣿⣿⢟⠛⠛⠿⡢⢻⣿⣾⣞⣿⡏⠖⢸⣿⢣⣷⡸⣇⣿⣿⣿⢼⡿⣿⣿
+    ⣡⢿⡷⣿⣿⣾⣿⣷⣶⣮⣄⣿⣏⣸⣻⣃⠭⠄⠛⠙⠛⠳⠋⣿⣿⣇⠙⣿⢸⣿
+    ⠫⣿⣧⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⣿⣾⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣹⢷⣿⡼⠋
+     ⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣿⣿⣿
+      ⢻⢹⣿⠸⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣼⣿⣿⣿⣿⡟
+      ⠈⢸⣿ ⠙⢿⣿⣿⣹⣿⣿⣿⣿⣟⡃⣽⣿⣿⡟⠁⣿⣿⢻⣿⣿⢿
+       ⠘⣿⡄  ⠙⢿⣿⣿⣾⣿⣷⣿⣿⣿⠟⠁  ⣿⣿⣾⣿⡟⣿
+        ⢻⡇⠸⣆  ⠈⠻⣿⡿⠿⠛⠉    ⢸⣿⣇⣿⣿⢿⣿
+    ]]
 
+return {
     -- dashboard
     {
         "goolord/alpha-nvim",
         opts = function(_, opts)
             local dashboard = require("alpha.themes.dashboard")
+            dashboard.section.header.val = vim.split(logo, "\n")
             opts.section.buttons.val = {
                 dashboard.button(
                     "p",
-                    " " .. "Open project",
+                    "💫 " .. "Open project",
                     "<cmd>lua require('telescope').extensions.projects.projects()<CR>"
                 ),
-                dashboard.button("f", " " .. "Find file", "<cmd>Telescope find_files<cr>"),
-                dashboard.button("l", "鈴" .. "Lazy", "<cmd>Lazy<cr>"),
-                dashboard.button("m", " " .. "Mason", "<cmd>Mason<cr>"),
-                dashboard.button("r", " " .. "Recent files", "<CMD>Telescope oldfiles<cr>"),
-                dashboard.button("s", " " .. "Settings", ":e $MYVIMRC <cr>"),
-                dashboard.button("q", " " .. "Quit", "<cmd>qa<cr>"),
+                dashboard.button("f", "🔎 " .. "Find file", "<cmd>Telescope find_files<cr>"),
+                dashboard.button("l", "💤 " .. "Lazy", "<cmd>Lazy<cr>"),
+                dashboard.button("m", "📦 " .. "Mason", "<cmd>Mason<cr>"),
+                dashboard.button("r", "🎯 " .. "Recent files", "<CMD>Telescope oldfiles<cr>"),
+                dashboard.button("s", "🪒 " .. "Settings", ":e $MYVIMRC <cr>"),
+                dashboard.button("q", "🚧 " .. "Quit", "<cmd>qa<cr>"),
             }
             opts.config.opts.setup = function()
                 vim.api.nvim_create_autocmd("User", {
