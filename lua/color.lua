@@ -31,7 +31,7 @@ local color = {
     grey = "#928374",
 
     select = { bg = "#c47fd5" },
-    border = { fg = "#35eb9a" },
+    border = { fg = "#61f1ca" },
 }
 
 return color

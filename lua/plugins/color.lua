@@ -94,6 +94,8 @@ return {
                 hl.NotifyINFOBorder = color.border
                 hl.NotifyERRORBorder = color.border
 
+                hl.FloatermBorder = color.border
+
                 hl.LspFloatWinBorder = color.border
                 hl.LspSagaHoverBorder = color.border
                 hl.LspSagaRenameBorder = color.border
