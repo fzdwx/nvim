@@ -20,6 +20,8 @@ local theme = {
     normal = color.whitea,
 }
 
+local trans = false
+
 return {
 
     {
@@ -35,26 +37,29 @@ return {
         "folke/tokyonight.nvim",
         opts = {
             style = "storm",
-            transparent = true,
+            transparent = trans,
             styles = {
-                sidebars = "transparent",
-                floats = "transparent",
+                -- sidebars = "transparent",
+                -- floats = "transparent",
             },
             on_colors = function(colors)
-                colors.bg_statusline = ""
+                -- colors.bg_statusline = ""
+                colors.border = color.main
+                colors.border_highlight = color.main
                 colors.gitSigns = {
                     add = color.main,
                     change = color.pura,
-                    delete = color.redc,
+                    delete = color.bg_reda,
                 }
+                colors.git = colors.gitSigns
             end,
             on_highlights = function(hl, c)
-                hl.String = { fg = theme.string, style = st_b }
-                hl.Keyword = { fg = theme.keyword }
+                -- hl.String = { fg = theme.string, style = st_b }
+
                 hl.Function = { fg = theme.functionName }
-                hl.Comment = { fg = color.foreground, style = st_i }
-                hl.PreProc = { fg = color.bluea }
-                hl.Statement = { fg = "#ff00ff" }
+                -- hl.Comment = { fg = color.foreground, style = st_i }
+                -- hl.PreProc = { fg = color.bluea }
+                -- hl.Statement = { fg = "#ff00ff" }
 
                 hl.CursorLine = { bg = "" }
 
@@ -65,36 +70,20 @@ return {
                 --- 行号颜色
                 hl.LineNr = { fg = color.activeForeground }
 
-                hl.GitGutterAdd = { fg = color.main }
-                hl.GitGutterChange = { fg = color.pura }
-                hl.GitGutterDelete = { fg = color.bg_reda }
-                hl.GitSignsAdd = { fg = color.main }
-                hl.GitSignsChange = { fg = color.pura }
-                hl.GitSignsDelete = { fg = color.bg_reda }
-                hl.DiffAdd = { fg = color.main }
-                hl.DiffChange = { fg = color.pura }
-                hl.DiffDelete = { fg = color.bg_reda }
-
-                hl["@keyword.function"] = { fg = theme.keywordFunc }
-                hl["@keyword"] = { fg = theme.keyword, style = st_i }
-                hl["@operator"] = { fg = color.purc }
+                -- hl["@keyword.function"] = { fg = theme.keywordFunc }
+                -- hl["@keyword"] = { fg = theme.keyword, style = st_i }
+                -- hl["@operator"] = { fg = color.purc }
                 hl["@comment"] = { fg = color.greena, style = st_i }
-                hl.Operator = { fg = color.purc }
-                hl["@field"] = { fg = theme.field }
-                hl["@property"] = { fg = theme.field }
-                hl["@parameter"] = { fg = "" }
+                -- hl.Operator = { fg = color.purc }
+                -- hl["@field"] = { fg = theme.field }
+                -- hl["@property"] = { fg = theme.field }
+                -- hl["@parameter"] = { fg = "" }
 
                 hl.NvimTreeCursorLine = color.select
 
                 hl.TelescopeBorder = color.border
                 hl.TelescopeSelection = color.select
                 hl.TelescopeMatching = { fg = color.main, underline = true }
-
-                hl.LspFloatWinBorder = color.border
-
-                --- notify
-                hl.NotifyINFOBorder = color.border
-                hl.NotifyERRORBorder = color.border
 
                 hl.FloatermBorder = color.border
 
@@ -120,7 +109,7 @@ return {
     {
         "rcarriga/nvim-notify",
         opts = {
-            background_colour = "#000000",
+            -- background_colour = "#000000",
         },
     },
 
