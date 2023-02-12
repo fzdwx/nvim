@@ -22,6 +22,12 @@ map("n", "<leader>a", function()
     util.openCWord()
 end, { desc = "Open Url" })
 
+map("n", "<leader>fy", function()
+    local word = vim.fn.expand("<cWORD>")
+    local cmd = { "fanyi", word }
+    vim.fn.jobstart(cmd, { detach = true })
+end, { desc = "qwe" })
+
 --
 -- telescope 扩展
 --  <leader>fp   显示所有 projects

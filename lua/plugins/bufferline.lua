@@ -9,9 +9,9 @@ return {
 
     -- https://github.com/fzdwx/bufline.nvim
     {
-        "fzdwx/bufline.nvim",
-        -- dir = "~/IdeaProjects/bufline.nvim",
-        event = "BufReadPre",
+        -- "fzdwx/bufline.nvim",
+        dir = "~/IdeaProjects/bufline.nvim",
+        event = "BufEnter",
         config = function()
             local buf = require("bufline")
             buf.setup({
